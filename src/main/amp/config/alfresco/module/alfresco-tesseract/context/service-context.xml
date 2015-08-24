@@ -14,7 +14,6 @@
 
 	<bean id="transformer.worker.ocr.tiff"
 		class="org.alfresco.repo.content.transform.RuntimeExecutableContentTransformerWorker">
-
 		<property name="checkCommand">
 			<bean class="org.alfresco.util.exec.RuntimeExec">
 				<property name="commandsAndArguments">
@@ -22,7 +21,9 @@
 						<entry key=".*">
 							<list>
 								<!-- <value>tesseract</value> -->
-								<value>${ocr.script}</value>
+								<value>tesseract</value>
+								<value>${source}</value>
+								<value>${target}</value>
 							</list>
 						</entry>
 					</map>
@@ -52,20 +53,6 @@
 					<value>1,2</value>
 				</property>
 			</bean>
-		</property>
-
-		<property name="explicitTransformations">
-			<list>
-				<bean
-					class="org.alfresco.repo.content.transform.ExplictTransformationDetails">
-					<property name="sourceMimetype">
-						<value>image/tiff</value>
-					</property>
-					<property name="targetMimetype">
-						<value>text/plain</value>
-					</property>
-				</bean>
-			</list>
 		</property>
 	</bean>
 
