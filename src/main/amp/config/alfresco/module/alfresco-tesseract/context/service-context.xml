@@ -11,51 +11,6 @@
 	OF ANY KIND, either express or implied. See the License for the specific 
 	language governing permissions and limitations under the License. -->
 <beans>
-
-	<bean id="transformer.worker.ocr.tiff"
-		class="org.alfresco.repo.content.transform.RuntimeExecutableContentTransformerWorker">
-		<property name="checkCommand">
-			<bean class="org.alfresco.util.exec.RuntimeExec">
-				<property name="commandsAndArguments">
-					<map>
-						<entry key=".*">
-							<list>
-								<!-- <value>tesseract</value> -->
-								<value>tesseract</value>
-								<value>${source}</value>
-								<value>${target}</value>
-							</list>
-						</entry>
-					</map>
-				</property>
-				<property name="errorCodes">
-					<value>2</value>
-				</property>
-			</bean>
-		</property>
-
-		<property name="transformCommand">
-			<bean class="org.alfresco.util.exec.RuntimeExec">
-				<property name="commandsAndArguments">
-					<map>
-						<entry key=".*">
-							<list>
-								<!-- <value>tesseract</value> <value>${source}</value> <value>${target}</value> 
-									<value>-l</value> <value>eng</value> -->
-								<value>${ocr.script}</value>
-								<value>${source}</value>
-								<value>${target}</value>
-							</list>
-						</entry>
-					</map>
-				</property>
-				<property name="errorCodes">
-					<value>1,2</value>
-				</property>
-			</bean>
-		</property>
-	</bean>
-
 	<bean id="transformer.ocr.tiff"
 		class="org.alfresco.repo.content.transform.ProxyContentTransformer"
 		parent="baseContentTransformer">
