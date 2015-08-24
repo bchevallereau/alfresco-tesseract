@@ -83,7 +83,7 @@
 		parent="baseComplexContentTransformer">
 		<property name="transformers">
 			<list>
-				<ref bean="transformer.Archive" />
+				<ref bean="transformer.ImageMagick" />
 				<ref bean="transformer.ocr.tiff" />
 			</list>
 		</property>
