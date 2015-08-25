@@ -11,6 +11,9 @@
 	OF ANY KIND, either express or implied. See the License for the specific 
 	language governing permissions and limitations under the License. -->
 <beans>
+
+	<!-- Transforms from TIFF to plain text using Tesseract
+		 and a custom script -->
 	<bean id="transformer.worker.ocr.tiff"
 		class="org.alfresco.repo.content.transform.RuntimeExecutableContentTransformerWorker">
 		<property name="mimetypeService">
@@ -22,7 +25,7 @@
 					<map>
 						<entry key=".*">
 							<list>
-								<value>tesseract</value>
+								<value>${tesseract.exe}</value>
 								<value>-v</value>
 							</list>
 						</entry>
@@ -68,6 +71,7 @@
 		</property>
 	</bean>
 
+	<!-- Transforms from PDF to TIFF using Ghostscript -->
 	<bean id="transformer.worker.pdf.tiff"
 		class="org.alfresco.repo.content.transform.RuntimeExecutableContentTransformerWorker">
 		<property name="mimetypeService">
@@ -79,7 +83,7 @@
 					<map>
 						<entry key=".*">
 							<list>
-								<value>gs</value>
+								<value>${ghostscript.exe}</value>
 								<value>-v</value>
 							</list>
 						</entry>
@@ -94,7 +98,7 @@
 					<map>
 						<entry key=".*">
 							<list>
-								<value>gs</value>
+								<value>${ghostscript.exe}</value>
 								<value>-o</value>
 								<value>${target}</value>
 								<value>-sDEVICE=tiff24nc</value>
