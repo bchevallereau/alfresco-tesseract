@@ -70,7 +70,7 @@
 	</bean>
 
 	<bean id="transformer.worker.pdf.tiff"
-		class="org.alfresco.repo.content.transform.magick.ImageMagickContentTransformerWorker">
+		class="org.alfresco.repo.content.transform.RuntimeExecutableContentTransformerWorker">
 		<property name="mimetypeService">
 			<ref bean="mimetypeService" />
 		</property>
@@ -89,8 +89,8 @@
 			</bean>
 		</property>
 
-		<property name="executer">
-			<bean name="transformer.ImageMagick.Command" class="org.alfresco.util.exec.RuntimeExec">
+		<property name="transformCommand">
+			<bean class="org.alfresco.util.exec.RuntimeExec">
 				<property name="commandsAndArguments">
 					<map>
 						<entry key=".*">
@@ -106,63 +106,16 @@
 						</entry>
 					</map>
 				</property>
-				<property name="processProperties"
-					ref="#{systemProperties['os.name'].contains('Windows') ? 'processPropertiesWindows' : 'processPropertiesUnix'}" />
-				<property name="defaultProperties">
-					<props>
-						<prop key="options"></prop>
-					</props>
-				</property>
 				<property name="errorCodes">
-					<!-- The published error and fatal error codes are in the 400 and 700 
-						ranges, but 1 is the most common and have seen 255 (could that by -1) -->
-					<value>1,2,255,400,405,410,415,420,425,430,435,440,450,455,460,465,470,475,480,485,490,495,499,700,705,710,715,720,725,730,735,740,750,755,760,765,770,775,780,785,790,795,799</value>
+					<value>1,2</value>
+				</property>
+				<property name="waitForCompletion">
+					<value>true</value>
 				</property>
 			</bean>
 		</property>
 		<property name="transformerConfig">
 			<ref bean="transformerConfig" />
-		</property>
-	</bean>
-
-	<bean id="processPropertiesWindows" class="org.springframework.beans.factory.config.MapFactoryBean">
-		<property name="sourceMap">
-			<map>
-				<entry key="MAGICK_HOME">
-					<value>${img.root}</value>
-				</entry>
-				<entry key="MAGICK_CODER_MODULE_PATH">
-					<value>${img.coders}</value>
-				</entry>
-				<entry key="MAGICK_CONFIGURE_PATH">
-					<value>${img.config}</value>
-				</entry>
-				<entry key="GS_LIB">
-					<value>${img.gslib}</value>
-				</entry>
-				<entry key="DYLD_FALLBACK_LIBRARY_PATH">
-					<value>${img.dyn}</value>
-				</entry>
-				<entry key="LD_LIBRARY_PATH">
-					<value>${img.dyn}</value>
-				</entry>
-			</map>
-		</property>
-	</bean>
-
-	<bean id="processPropertiesUnix" class="org.springframework.beans.factory.config.MapFactoryBean">
-		<property name="sourceMap">
-			<map>
-				<entry key="MAGICK_HOME">
-					<value>${img.root}</value>
-				</entry>
-				<entry key="DYLD_FALLBACK_LIBRARY_PATH">
-					<value>${img.dyn}</value>
-				</entry>
-				<entry key="LD_LIBRARY_PATH">
-					<value>${img.dyn}</value>
-				</entry>
-			</map>
 		</property>
 	</bean>
 
