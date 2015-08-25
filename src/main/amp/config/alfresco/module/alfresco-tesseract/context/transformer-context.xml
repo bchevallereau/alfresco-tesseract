@@ -22,7 +22,6 @@
 					<map>
 						<entry key=".*">
 							<list>
-								<!-- <value>tesseract</value> -->
 								<value>tesseract</value>
 								<value>-v</value>
 							</list>
