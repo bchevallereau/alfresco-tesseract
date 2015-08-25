@@ -80,8 +80,8 @@
 					<map>
 						<entry key=".*">
 							<list>
-								<value>${img.exe}</value>
-								<value>-version</value>
+								<value>gs</value>
+								<value>-v</value>
 							</list>
 						</entry>
 					</map>
@@ -95,13 +95,12 @@
 					<map>
 						<entry key=".*">
 							<list>
-								<value>${img.exe}</value>
-								<value>-density</value>
-								<value>300</value>
-								<value>${source}</value>
-								<value>-depth</value>
-								<value>8</value>
+								<value>gs</value>
+								<value>-o</value>
 								<value>${target}</value>
+								<value>-sDEVICE=tiff24nc</value>
+								<value>-r300</value>
+								<value>${source}</value>
 							</list>
 						</entry>
 					</map>
