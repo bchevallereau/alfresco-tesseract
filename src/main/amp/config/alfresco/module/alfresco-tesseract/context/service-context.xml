@@ -174,19 +174,4 @@
 		</property>
 	</bean>
 
-	<bean id="transformer.ocr.pdf"
-		class="org.alfresco.repo.content.transform.ComplexContentTransformer"
-		parent="baseComplexContentTransformer">
-		<property name="transformers">
-			<list>
-				<ref bean="transformer.pdf.tiff" />
-				<ref bean="transformer.ocr.tiff" />
-			</list>
-		</property>
-		<property name="intermediateMimetypes">
-			<list>
-				<value>image/tiff</value>
-			</list>
-		</property>
-	</bean>
 </beans>
