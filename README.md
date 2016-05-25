@@ -19,4 +19,4 @@ ocr.script=...
 
 ## Supported platform
 
-This module has been tested only on Alfresco 4.2.f Community on Ubunutu 14.04 (with Tesseract 3).
+This module has been tested only on Alfresco 5.1 Community on Ubunutu 14.04 (with Tesseract 3).
