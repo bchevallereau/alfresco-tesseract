@@ -14,5 +14,7 @@ mkdir -p $TMPDIR
 cp -f $SOURCE $TMPDIR/$OCRFILE
  
 # call tesseract and redirect output to $TARGET
-tesseract $TMPDIR/$OCRFILE ${TARGET%\.*} -l eng
+cd $TMPDIR
+tesseract $OCRFILE ${TARGET%\.*} -l eng
 rm -f $TMPDIR/$OCRFILE
+cd -
